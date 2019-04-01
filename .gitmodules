@@ -1,0 +1,3 @@
+[submodule "alure"]
+	path = alure
+	url = https://github.com/kcat/alure/
