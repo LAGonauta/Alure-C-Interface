@@ -1,17 +1,15 @@
 #include "wrapString.hpp"
 
 struct wrapString {
-  void *obj;
+  std::string obj;
 };
 
 wrapString_t* wrapString_create(std::string text)
 {
   wrapString_t *dm;
-  std::string* obj;
 
-  dm = (typeof(dm))malloc(sizeof(*dm));
-  obj = new std::string(text);
-  dm->obj = obj;
+  dm = new wrapString_t;
+  dm->obj = text;
 
   return dm;
 }
@@ -23,21 +21,15 @@ void wrapString_destroy(wrapString_t* dm)
     return;
   }
 
-  delete static_cast<std::string*>(dm->obj);
-
-  free(dm);
+  delete dm;
 }
 
-const char* getString(wrapString_t* dm)
+const char* wrapString_getString(wrapString_t* dm)
 {
-  std::string* obj;
-
   if (dm == nullptr)
   {
     return nullptr;
   }
 
-  obj = static_cast<std::string*>(dm->obj);
-
-  return obj->c_str();
+  return dm->obj.c_str();
 }

@@ -1,17 +1,15 @@
 #include "deviceManager.hpp"
 
 struct deviceManager {
-  void *obj;
+  alure::DeviceManager obj;
 };
 
-deviceManager_t *deviceManager_create()
+deviceManager_t* deviceManager_create()
 {
-  deviceManager_t *dm;
-  alure::DeviceManager *obj;
+  deviceManager_t* dm;
 
-  dm = (typeof(dm))malloc(sizeof(*dm));
-  obj = new alure::DeviceManager();
-  dm->obj = obj;
+  dm = new deviceManager;
+  dm->obj = alure::DeviceManager::getInstance();
 
   return dm;
 }
@@ -23,78 +21,53 @@ void deviceManager_destroy(deviceManager_t* dm)
     return;
   }
 
-  delete static_cast<alure::DeviceManager *>(dm->obj);
-
-  free(dm);
+  delete dm;
 }
 
-bool queryExtension(deviceManager_t* dm, const char* extension)
+bool deviceManager_queryExtension(deviceManager_t* dm, const char* extension)
 {
-  alure::DeviceManager *obj;
-
   if (dm == nullptr)
   {
     return false;
   }
 
-  obj = static_cast<alure::DeviceManager *>(dm->obj);
-  return obj->queryExtension(extension);
+  return dm->obj.queryExtension(extension);
 }
 
-bool openDefaultPlayback(deviceManager_t* dm) // uses nothrow
+device_t* deviceManager_openPlayback(deviceManager_t* dm, const char* name) noexcept
 {
-  alure::DeviceManager *obj;
-
-  if (dm == nullptr)
-  {
-    return false;
-  }
-
-  obj = static_cast<alure::DeviceManager *>(dm->obj);
-  obj->openPlayback(std::nothrow); // return struct Device pointer, not bool. Update method later. TODO.
-  return true;
-}
-
-bool openPlayback(deviceManager_t* dm, const char* name) // uses nothrow
-{
-  alure::DeviceManager *obj;
-
-  if (dm == nullptr)
-  {
-    return false;
-  }
-
-  obj = static_cast<alure::DeviceManager *>(dm->obj);
-  obj->openPlayback(name, std::nothrow); //TODO
-  return true;
-}
-
-wrapString_t** enumerate(deviceManager_t* dm, alure::DeviceEnumeration type)
-{
-  alure::DeviceManager* obj;
-
   if (dm == nullptr)
   {
     return nullptr;
   }
 
-  obj = static_cast<alure::DeviceManager*>(dm->obj);
-  auto result = obj->enumerate(type);
-
-  return nullptr;
+  return device_set(dm->obj.openPlayback(name, std::nothrow));
 }
 
-wrapString_t* defaultDeviceName(deviceManager_t* dm, alure::DefaultDeviceType type)
+wrapStringVector_t* deviceManager_enumerate(deviceManager_t* dm, alure::DeviceEnumeration type)
 {
-  alure::DeviceManager* obj;
-
   if (dm == nullptr)
   {
     return nullptr;
   }
 
-  obj = static_cast<alure::DeviceManager*>(dm->obj);
+  auto result = dm->obj.enumerate(type);
+  std::vector<wrapString_t*> string_vector;
+  for (int i = 0; i < result.size(); ++i)
+  {
+    string_vector.push_back(wrapString_create(result[i]));
+  }
 
-  return wrapString_create(obj->defaultDeviceName(type));
+  return wrapStringVector_create(string_vector);
+}
+
+wrapString_t* deviceManager_defaultDeviceName(deviceManager_t* dm, alure::DefaultDeviceType type)
+{
+  if (dm == nullptr)
+  {
+    return nullptr;
+  }
+
+  return wrapString_create(dm->obj.defaultDeviceName(type));
 }
 

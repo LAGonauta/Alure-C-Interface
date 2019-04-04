@@ -15,7 +15,7 @@ typedef struct wrapString wrapString_t;
 wrapString_t* wrapString_create(std::string text);
 void wrapString_destroy(wrapString_t* dm);
 
-const char* getString(wrapString_t* dm);
+const char* wrapString_getString(wrapString_t* dm);
 
 #ifdef __cplusplus
 }
