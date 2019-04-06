@@ -143,8 +143,16 @@ void device_reset(device_t* dm, alure::AttributePair* attributes, uint64_t size)
     return;
   }
 
-  alure::ArrayView<alure::AttributePair> attr(attributes, size);
-  dm->obj.reset(attr);
+  if (attributes != nullptr && size > 0)
+  {
+    alure::ArrayView<alure::AttributePair> attr(attributes, size);
+    dm->obj.reset(attr);
+  }
+  else
+  {
+    alure::ArrayView<alure::AttributePair> attr;
+    dm->obj.reset(attr);
+  }
 }
 
 context_t* device_createContextWithAttr(device_t* dm, alure::AttributePair* attributes, uint64_t size) noexcept
