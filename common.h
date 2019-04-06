@@ -1,3 +1,4 @@
+#pragma once
 
 // https://stackoverflow.com/questions/2164827/explicitly-exporting-shared-library-functions-in-linux
 #if defined(_MSC_VER)
@@ -14,6 +15,24 @@
     #define IMPORT
     #pragma warning Unknown dynamic link import/export semantics.
 #endif
+
+#include "alure/include/AL/alure2.h"
+#include "structs.hpp"
+
+struct deviceManager;
+typedef struct deviceManager deviceManager_t;
+
+struct device;
+typedef struct device device_t;
+
+struct context;
+typedef struct context context_t;
+
+struct wrapString;
+typedef struct wrapString wrapString_t;
+
+struct wrapStringVector;
+typedef struct wrapStringVector wrapStringVector_t;
 
 // From http://gcc.gnu.org/wiki/Visibility
 // #if defined _WIN32 || defined __CYGWIN__

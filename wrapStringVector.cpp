@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include "wrapString.hpp"
 #include "wrapStringVector.hpp"
 
 struct wrapStringVector {
@@ -30,17 +31,17 @@ void wrapStringVector_destroy(wrapStringVector_t* dm)
   delete dm;
 }
 
-int wrapStringVector_getSize(wrapStringVector_t* dm)
+uint64_t wrapStringVector_getSize(wrapStringVector_t* dm)
 {
   if (dm == nullptr)
   {
     return 0;
   }
 
-  return dm->obj.size();
+  return static_cast<uint64_t>(dm->obj.size());
 }
 
-wrapString_t* wrapStringVector_getAt(wrapStringVector_t* dm, int position)
+wrapString_t* wrapStringVector_getAt(wrapStringVector_t* dm, uint64_t position)
 {
   if (dm == nullptr)
   {

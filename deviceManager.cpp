@@ -1,4 +1,7 @@
 #include "deviceManager.hpp"
+#include "device.hpp"
+#include "wrapString.hpp"
+#include "wrapStringVector.hpp"
 
 struct deviceManager {
   alure::DeviceManager obj;

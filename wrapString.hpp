@@ -9,9 +9,6 @@
 extern "C" {
 #endif
 
-struct wrapString;
-typedef struct wrapString wrapString_t;
-
 wrapString_t* wrapString_create(std::string text);
 void wrapString_destroy(wrapString_t* dm);
 

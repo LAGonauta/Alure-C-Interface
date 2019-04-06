@@ -1,4 +1,7 @@
 #include "device.hpp"
+#include "context.hpp"
+#include "wrapString.hpp"
+#include "wrapStringVector.hpp"
 
 struct device {
   alure::Device obj;
@@ -54,8 +57,27 @@ bool device_queryExtension(device_t* dm, const char* extension)
   return dm->obj.queryExtension(extension);
 }
 
-//uint32_t device_getALCVersion(device_t* dm);
-//uint32_t device_getEFXVersion(device_t* dm);
+alureVersion device_getALCVersion(device_t* dm)
+{
+  if (dm == nullptr)
+  {
+    return { 0, 0 };
+  }
+
+  auto version = dm->obj.getALCVersion();
+  return { version.getMajor(), version.getMinor() };
+}
+
+alureVersion device_getEFXVersion(device_t* dm)
+{
+  if (dm == nullptr)
+  {
+    return { 0, 0 };
+  }
+
+  auto version = dm->obj.getEFXVersion();
+  return { version.getMajor(), version.getMinor() };
+}
 
 uint32_t device_getFrequency(device_t* dm)
 {
@@ -114,10 +136,34 @@ wrapString_t* device_getCurrentHRTF(device_t* dm)
   return wrapString_create(dm->obj.getCurrentHRTF());
 }
 
-//void device_reset(ArrayView<AttributePair> attributes);
+void device_reset(device_t* dm, alure::AttributePair* attributes, uint64_t size)
+{
+  if (dm == nullptr)
+  {
+    return;
+  }
 
-//Context device_createContext(ArrayView<AttributePair> attributes, const std::nothrow_t&) noexcept
-//Context device_createContext(const std::nothrow_t&) noexcept;
+  alure::ArrayView<alure::AttributePair> attr(attributes, size);
+  dm->obj.reset(attr);
+}
+
+context_t* device_createContextWithAttr(device_t* dm, alure::AttributePair* attributes, uint64_t size) noexcept
+{
+  if (dm == nullptr)
+  {
+    return nullptr;
+  }
+
+  if (attributes != nullptr && size > 0)
+  {
+    alure::ArrayView<alure::AttributePair> attr(attributes, size);
+    return context_set(dm->obj.createContext(attr, std::nothrow));
+  }
+  else
+  {
+    return context_set(dm->obj.createContext(std::nothrow));
+  }
+}
 
 void device_pauseDSP(device_t* dm)
 {
