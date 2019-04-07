@@ -25,6 +25,15 @@ typedef struct deviceManager deviceManager_t;
 struct device;
 typedef struct device device_t;
 
+struct listener;
+typedef struct listener listener_t;
+
+struct buffer;
+typedef struct buffer buffer_t;
+
+struct source;
+typedef struct source source_t;
+
 struct context;
 typedef struct context context_t;
 

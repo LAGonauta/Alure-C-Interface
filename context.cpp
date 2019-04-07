@@ -1,5 +1,7 @@
 #include "context.hpp"
+#include "buffer.hpp"
 #include "device.hpp"
+#include "listener.hpp"
 #include "wrapString.hpp"
 #include "wrapStringVector.hpp"
 
@@ -11,10 +13,13 @@ void context_makeCurrent(context_t* dm)
 {
   if (dm == nullptr)
   {
-    return;
+    alure::Context::MakeCurrent(nullptr);
+  }
+  else
+  {
+    alure::Context::MakeCurrent(dm->obj);
   }
   
-  alure::Context::MakeCurrent(dm->obj);
 }
 
 context_t* context_getCurrent()
@@ -26,10 +31,12 @@ void context_makeThreadCurrent(context_t* dm)
 {
   if (dm == nullptr)
   {
-    return;
+    alure::Context::MakeThreadCurrent(nullptr);
   }
-  
-  alure::Context::MakeThreadCurrent(dm->obj);
+  else
+  {
+    alure::Context::MakeThreadCurrent(dm->obj);
+  }
 }
 
 context_t* context_getThreadCurrent()
@@ -55,6 +62,14 @@ void context_destroy(context_t* dm)
   }
 
   dm->obj.destroy();
+}
+
+void context_destroyPointer(context_t* dm)
+{
+  if (dm == nullptr)
+  {
+    return;
+  }
 
   delete dm;
 }
@@ -89,7 +104,16 @@ void context_endBatch(context_t* dm)
   dm->obj.endBatch();
 }
 
-//Listener getListener();
+listener_t* context_getListener(context_t* dm)
+{
+  if (dm == nullptr)
+  {
+    return nullptr;
+  }
+
+  return listener_set(dm->obj.getListener());
+}
+
 // SharedPtr<MessageHandler> setMessageHandler(SharedPtr<MessageHandler> handler);
 // SharedPtr<MessageHandler> getMessageHandler() const;
 
@@ -153,7 +177,15 @@ int32_t context_getDefaultResamplerIndex(context_t* dm)
   return dm->obj.getDefaultResamplerIndex();
 }
 
-//Buffer getBuffer(StringView name);
+buffer_t* context_getBuffer(context_t* dm, const char* name)
+{
+  if (dm == nullptr)
+  {
+    return nullptr;
+  }
+
+  return buffer_set(dm->obj.getBuffer(name));
+}
 //SharedFuture<Buffer> getBufferAsync(StringView name);
 //void precacheBuffersAsync(ArrayView<StringView> names);
 //Buffer createBufferFrom(StringView name, SharedPtr<Decoder> decoder);
@@ -161,7 +193,16 @@ int32_t context_getDefaultResamplerIndex(context_t* dm)
 //Buffer findBuffer(StringView name);
 //SharedFuture<Buffer> findBufferAsync(StringView name);
 
-//void context_removeBuffer(context_t* dm, const char* name);
+void context_removeBuffer(context_t* dm, const char* name)
+{
+  if (dm == nullptr)
+  {
+    return;
+  }
+
+  dm->obj.removeBuffer(name);
+}
+
 //void removeBuffer(Buffer buffer);
 
 // Source createSource();

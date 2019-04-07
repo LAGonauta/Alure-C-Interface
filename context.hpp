@@ -15,13 +15,14 @@ context_t* context_getThreadCurrent(); //static
 
 context_t* context_set(alure::Context ctx);
 void context_destroy(context_t* dm);
+void context_destroyPointer(context_t* dm);
 
 device_t* context_getDevice(context_t* dm);
 
 void context_startBatch(context_t* dm);
 void context_endBatch(context_t* dm);
 
-//Listener getListener();
+listener_t* context_getListener(context_t* dm);
 
 // SharedPtr<MessageHandler> setMessageHandler(SharedPtr<MessageHandler> handler);
 // SharedPtr<MessageHandler> getMessageHandler() const;
@@ -37,7 +38,7 @@ bool context_isSupported(context_t* dm, alure::ChannelConfig channels, alure::Sa
 wrapStringVector_t* context_getAvailableResamplers(context_t* dm);
 int32_t context_getDefaultResamplerIndex(context_t* dm);
 
-//Buffer getBuffer(StringView name);
+buffer_t* context_getBuffer(context_t* dm, const char* name);
 //SharedFuture<Buffer> getBufferAsync(StringView name);
 //void precacheBuffersAsync(ArrayView<StringView> names);
 //Buffer createBufferFrom(StringView name, SharedPtr<Decoder> decoder);
