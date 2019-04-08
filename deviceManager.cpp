@@ -11,8 +11,7 @@ deviceManager_t* deviceManager_create()
 {
   deviceManager_t* dm;
 
-  dm = new deviceManager;
-  dm->obj = alure::DeviceManager::getInstance();
+  dm = new deviceManager { .obj = alure::DeviceManager::getInstance() };
 
   return dm;
 }

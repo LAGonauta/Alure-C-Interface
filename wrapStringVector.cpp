@@ -10,8 +10,7 @@ wrapStringVector_t* wrapStringVector_create(std::vector<wrapString_t*> vector)
 {
   wrapStringVector_t* dm;
 
-  dm = new wrapStringVector_t;
-  dm->obj = vector;
+  dm = new wrapStringVector_t { .obj = vector };
 
   return dm;
 }

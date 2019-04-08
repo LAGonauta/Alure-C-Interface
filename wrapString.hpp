@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-wrapString_t* wrapString_create(std::string text);
+wrapString_t* wrapString_create(const std::string text);
 void wrapString_destroy(wrapString_t* dm);
 
 const char* wrapString_getString(wrapString_t* dm);

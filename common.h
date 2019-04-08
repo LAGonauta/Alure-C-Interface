@@ -37,6 +37,9 @@ typedef struct source source_t;
 struct context;
 typedef struct context context_t;
 
+struct wrapException;
+typedef struct wrapException wrapException_t;
+
 struct wrapString;
 typedef struct wrapString wrapString_t;
 

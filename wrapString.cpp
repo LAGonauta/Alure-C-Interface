@@ -1,15 +1,14 @@
 #include "wrapString.hpp"
 
 struct wrapString {
-  std::string obj;
+  const std::string obj;
 };
 
-wrapString_t* wrapString_create(std::string text)
+wrapString_t* wrapString_create(const std::string text)
 {
   wrapString_t *dm;
 
-  dm = new wrapString_t;
-  dm->obj = text;
+  dm = new wrapString_t { .obj = text };
 
   return dm;
 }

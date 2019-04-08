@@ -11,8 +11,7 @@ device_t* device_create()
 {
   device_t* dm;
 
-  dm = new device;
-  dm->obj = alure::Device();
+  dm = new device { .obj = alure::Device() };
 
   return dm;
 }
@@ -21,8 +20,7 @@ device_t* device_set(alure::Device dev)
 {
   device_t* dm;
 
-  dm = new device;
-  dm->obj = dev;
+  dm = new device { .obj = dev };
 
   return dm;
 }

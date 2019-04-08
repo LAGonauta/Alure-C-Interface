@@ -48,8 +48,7 @@ context_t* context_set(alure::Context ctx)
 {
   context_t* dm;
 
-  dm = new context;
-  dm->obj = ctx;
+  dm = new context { .obj = ctx };
 
   return dm;
 }
