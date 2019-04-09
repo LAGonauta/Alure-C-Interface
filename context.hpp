@@ -49,7 +49,7 @@ buffer_t* context_getBuffer(context_t* dm, const char* name);
 void context_removeBuffer(context_t* dm, const char* name);
 //void removeBuffer(Buffer buffer);
 
-// Source createSource();
+source_t* context_createSource(context_t* dm, void* exceptionPointer);
 // AuxiliaryEffectSlot createAuxiliaryEffectSlot();
 // Effect createEffect();
 // SourceGroup createSourceGroup();

@@ -2,10 +2,6 @@
 #include "wrapString.hpp"
 #include "wrapStringVector.hpp"
 
-struct wrapStringVector {
-  std::vector<wrapString_t*> obj;
-};
-
 wrapStringVector_t* wrapStringVector_create(std::vector<wrapString_t*> vector)
 {
   wrapStringVector_t* dm;

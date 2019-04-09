@@ -1,9 +1,5 @@
 #include "listener.hpp"
 
-struct listener {
-  alure::Listener obj;
-};
-
 listener_t* listener_set(alure::Listener lis)
 {
   listener_t* dm;

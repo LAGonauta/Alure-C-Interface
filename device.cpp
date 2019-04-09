@@ -3,10 +3,6 @@
 #include "wrapString.hpp"
 #include "wrapStringVector.hpp"
 
-struct device {
-  alure::Device obj;
-};
-
 device_t* device_create()
 {
   device_t* dm;

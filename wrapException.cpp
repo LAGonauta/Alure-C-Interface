@@ -1,12 +1,6 @@
 #include "wrapException.hpp"
 #include "wrapString.hpp"
 
-struct wrapException {
-  const std::string what;
-  const std::string type;
-  const std::string comment;
-};
-
 wrapException_t* wrapException_create(const std::exception& e, const std::string& type, const std::string& comment)
 {
   wrapException_t *dm;

@@ -3,10 +3,6 @@
 #include "wrapString.hpp"
 #include "wrapStringVector.hpp"
 
-struct deviceManager {
-  alure::DeviceManager obj;
-};
-
 deviceManager_t* deviceManager_create()
 {
   deviceManager_t* dm;

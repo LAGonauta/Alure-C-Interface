@@ -2,12 +2,10 @@
 #include "buffer.hpp"
 #include "device.hpp"
 #include "listener.hpp"
+#include "source.hpp"
 #include "wrapString.hpp"
 #include "wrapStringVector.hpp"
-
-struct context {
-  alure::Context obj;
-};
+#include "wrapException.hpp"
 
 void context_makeCurrent(context_t* dm)
 {
@@ -204,7 +202,16 @@ void context_removeBuffer(context_t* dm, const char* name)
 
 //void removeBuffer(Buffer buffer);
 
-// Source createSource();
+source_t* context_createSource(context_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return nullptr;
+  }
+
+  auto func = [&dm]() -> source_t* { return source_set(dm->obj.createSource()); };
+  return wrapException_wrapFunction<decltype(func), source_t*>(func, "", exceptionPointer);
+}
 // AuxiliaryEffectSlot createAuxiliaryEffectSlot();
 // Effect createEffect();
 // SourceGroup createSourceGroup();

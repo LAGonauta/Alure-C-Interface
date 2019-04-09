@@ -19,31 +19,60 @@
 #include "alure/include/AL/alure2.h"
 #include "structs.hpp"
 
-struct deviceManager;
+struct deviceManager
+{
+  alure::DeviceManager obj;
+};
 typedef struct deviceManager deviceManager_t;
 
-struct device;
+struct device
+{
+  alure::Device obj;
+};
 typedef struct device device_t;
 
-struct listener;
+struct listener
+{
+  alure::Listener obj;
+};
 typedef struct listener listener_t;
 
-struct buffer;
+struct buffer
+{
+  alure::Buffer obj;
+};
 typedef struct buffer buffer_t;
 
-struct source;
+struct source
+{
+  alure::Source obj;
+};
 typedef struct source source_t;
 
-struct context;
+struct context
+{
+  alure::Context obj;
+};
 typedef struct context context_t;
 
-struct wrapException;
+struct wrapException
+{
+  const std::string what;
+  const std::string type;
+  const std::string comment;
+};
 typedef struct wrapException wrapException_t;
 
-struct wrapString;
+struct wrapString
+{
+  const std::string obj;
+};
 typedef struct wrapString wrapString_t;
 
-struct wrapStringVector;
+struct wrapStringVector
+{
+  std::vector<wrapString_t*> obj;
+};
 typedef struct wrapStringVector wrapStringVector_t;
 
 // From http://gcc.gnu.org/wiki/Visibility

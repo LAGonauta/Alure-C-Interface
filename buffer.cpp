@@ -1,10 +1,6 @@
 #include "buffer.hpp"
 #include "wrapException.hpp"
 
-struct buffer {
-  alure::Buffer obj;
-};
-
 buffer_t* buffer_set(alure::Buffer buf)
 {
   buffer_t* dm;
