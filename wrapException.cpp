@@ -5,7 +5,7 @@ wrapException_t* wrapException_create(const std::exception& e, const std::string
 {
   wrapException_t *dm;
 
-  dm = new wrapException { .what = e.what(), .type = type, .comment = comment };
+  dm = new wrapException(e.what(), type, comment);
 
   return dm;
 }

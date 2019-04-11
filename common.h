@@ -22,36 +22,42 @@
 struct deviceManager
 {
   alure::DeviceManager obj;
+  deviceManager(alure::DeviceManager dm) : obj(dm) { }
 };
 typedef struct deviceManager deviceManager_t;
 
 struct device
 {
   alure::Device obj;
+  device(alure::Device devc) : obj(devc) { }
 };
 typedef struct device device_t;
 
 struct listener
 {
   alure::Listener obj;
+  listener(alure::Listener lst) : obj(lst) { }
 };
 typedef struct listener listener_t;
 
 struct buffer
 {
   alure::Buffer obj;
+  buffer(alure::Buffer bff) : obj(bff) { }
 };
 typedef struct buffer buffer_t;
 
 struct source
 {
   alure::Source obj;
+  source(alure::Source src) : obj(src) { }
 };
 typedef struct source source_t;
 
 struct context
 {
   alure::Context obj;
+  context(alure::Context ctx) : obj(ctx) { }
 };
 typedef struct context context_t;
 
@@ -60,20 +66,30 @@ struct wrapException
   const std::string what;
   const std::string type;
   const std::string comment;
+  wrapException(const std::string what, const std::string type, const std::string comment) : what(what), type(type), comment(comment) { }
 };
 typedef struct wrapException wrapException_t;
 
 struct wrapString
 {
   const std::string obj;
+  wrapString(const std::string text) : obj(text) { }
 };
 typedef struct wrapString wrapString_t;
 
 struct wrapStringVector
 {
   std::vector<wrapString_t*> obj;
+  wrapStringVector(std::vector<wrapString_t*> wstrv) : obj(wstrv) { }
 };
 typedef struct wrapStringVector wrapStringVector_t;
+
+struct sourceVector
+{
+  std::vector<source_t*> obj;
+  sourceVector(std::vector<source_t*> wsourcev) : obj(wsourcev) { }
+};
+typedef struct sourceVector sourceVector_t;
 
 // From http://gcc.gnu.org/wiki/Visibility
 // #if defined _WIN32 || defined __CYGWIN__

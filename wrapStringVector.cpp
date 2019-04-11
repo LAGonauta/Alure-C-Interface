@@ -6,7 +6,7 @@ wrapStringVector_t* wrapStringVector_create(std::vector<wrapString_t*> vector)
 {
   wrapStringVector_t* dm;
 
-  dm = new wrapStringVector_t { .obj = vector };
+  dm = new wrapStringVector_t(vector);
 
   return dm;
 }
@@ -18,7 +18,7 @@ void wrapStringVector_destroy(wrapStringVector_t* dm)
     return;
   }
 
-  for (int i = 0; i < dm->obj.size(); ++i)
+  for (size_t i = 0; i < dm->obj.size(); ++i)
   {
       wrapString_destroy(dm->obj[i]);
   }

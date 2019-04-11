@@ -5,7 +5,7 @@ source_t* source_set(alure::Source sour)
 {
   source_t* dm;
 
-  dm = new source { .obj = sour };
+  dm = new source_t(sour);
 
   return dm;
 }
@@ -349,7 +349,7 @@ alureVector3 source_getPosition(source_t* dm, void* exceptionPointer)
 
   auto func = [&dm]() -> alure::Vector3 { return dm->obj.getPosition(); };
   auto result = wrapException_wrapFunction<decltype(func), alure::Vector3>(func, "", exceptionPointer);
-  return alureVector3{.x = result[0], .y = result[1], .z = result[2]};
+  return alureVector3(result[0], result[1], result[2]);
 }
 
 void source_setVelocity(source_t* dm, const alureVector3* velocity, void* exceptionPointer)
@@ -372,7 +372,7 @@ alureVector3 source_getVelocity(source_t* dm, void* exceptionPointer)
 
   auto func = [&dm]() -> alure::Vector3 { return dm->obj.getVelocity(); };
   auto result = wrapException_wrapFunction<decltype(func), alure::Vector3>(func, "", exceptionPointer);
-  return alureVector3{.x = result[0], .y = result[1], .z = result[2]};
+  return alureVector3(result[0], result[1], result[2]);
 }
 
 void source_setDirection(source_t* dm, const alureVector3* direction, void* exceptionPointer)
@@ -395,7 +395,7 @@ alureVector3 source_getDirection(source_t* dm, void* exceptionPointer)
 
   auto func = [&dm]() -> alure::Vector3 { return dm->obj.getDirection(); };
   auto result = wrapException_wrapFunction<decltype(func), alure::Vector3>(func, "", exceptionPointer);
-  return alureVector3{.x = result[0], .y = result[1], .z = result[2]};
+  return alureVector3(result[0], result[1], result[2]);
 }
 
 void source_setOrientation(source_t* dm, const alureOrientation* orientation, void* exceptionPointer)
@@ -404,6 +404,7 @@ void source_setOrientation(source_t* dm, const alureOrientation* orientation, vo
   {
     return;
   }
+
   std::pair<alure::Vector3, alure::Vector3> orientation_pair = std::make_pair<alure::Vector3, alure::Vector3>(alure::Vector3(orientation->At.x, orientation->At.y, orientation->At.z), alure::Vector3(orientation->Up.x, orientation->Up.y, orientation->Up.z));
   auto func = [&dm, &orientation_pair]() -> void { dm->obj.setOrientation(orientation_pair); };
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
@@ -418,5 +419,287 @@ alureOrientation source_getOrientation(source_t* dm, void* exceptionPointer)
 
   auto func = [&dm]() -> std::pair<alure::Vector3, alure::Vector3>  { return dm->obj.getOrientation(); };
   auto result = wrapException_wrapFunction<decltype(func), std::pair<alure::Vector3, alure::Vector3>>(func, "", exceptionPointer);
-  return alureOrientation{ .At = alureVector3{.x = result.first[0], .y = result.first[1], .z = result.first[2]}, .Up = alureVector3{.x = result.second[0], .y = result.second[1], .z = result.second[2]}};
+  return alureOrientation(alureVector3(result.first[0], result.first[1], result.first[2]), alureVector3(result.second[0], result.second[1], result.second[2]));
 }
+
+void source_setConeAngles(source_t* dm, float inner, float outer, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return;
+  }
+
+  auto func = [&dm, &inner, &outer]() -> void { dm->obj.setConeAngles(inner, outer); };
+  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+}
+// std::pair<float,float> source_getConeAngles(source_t* dm, void* exceptionPointer);
+
+float source_getInnerConeAngle(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return 0;
+  }
+
+  auto func = [&dm]() -> float { return dm->obj.getInnerConeAngle(); };
+  return wrapException_wrapFunction<decltype(func), float>(func, "", exceptionPointer);
+}
+
+float source_getOuterConeAngle(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return 0;
+  }
+
+  auto func = [&dm]() -> float { return dm->obj.getOuterConeAngle(); };
+  return wrapException_wrapFunction<decltype(func), float>(func, "", exceptionPointer);
+}
+
+void source_setOuterConeGains(source_t* dm, float gain, float gainhf, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return;
+  }
+
+  auto func = [&dm, &gain, &gainhf]() -> void { dm->obj.setOuterConeGains(gain, gainhf); };
+  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+}
+
+// std::pair<float,float> source_getOuterConeGains(source_t* dm, void* exceptionPointer);
+
+float source_getOuterConeGain(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return 0;
+  }
+
+  auto func = [&dm]() -> float { return dm->obj.getOuterConeGain(); };
+  return wrapException_wrapFunction<decltype(func), float>(func, "", exceptionPointer);
+}
+
+float source_getOuterConeGainHF(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return 0;
+  }
+
+  auto func = [&dm]() -> float { return dm->obj.getOuterConeGainHF(); };
+  return wrapException_wrapFunction<decltype(func), float>(func, "", exceptionPointer);
+}
+
+void source_setRolloffFactors(source_t* dm, float factor, float roomfactor, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return;
+  }
+
+  auto func = [&dm, &factor, &roomfactor]() -> void { dm->obj.setRolloffFactors(factor, roomfactor); };
+  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+}
+
+// std::pair<float,float> source_getRolloffFactors(source_t* dm, void* exceptionPointer);
+
+float source_getRolloffFactor(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return 0;
+  }
+
+  auto func = [&dm]() -> float { return dm->obj.getRolloffFactor(); };
+  return wrapException_wrapFunction<decltype(func), float>(func, "", exceptionPointer);
+}
+
+float source_getRoomRolloffFactor(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return 0;
+  }
+
+  auto func = [&dm]() -> float { return dm->obj.getRoomRolloffFactor(); };
+  return wrapException_wrapFunction<decltype(func), float>(func, "", exceptionPointer);
+}
+
+void source_setDopplerFactor(source_t* dm, float factor, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return;
+  }
+
+  auto func = [&dm, &factor]() -> void { dm->obj.setDopplerFactor(factor); };
+  return wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+}
+
+float source_getDopplerFactor(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return 0;
+  }
+
+  auto func = [&dm]() -> float { return dm->obj.getDopplerFactor(); };
+  return wrapException_wrapFunction<decltype(func), float>(func, "", exceptionPointer);
+}
+
+void source_setRelative(source_t* dm, bool relative, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return;
+  }
+
+  auto func = [&dm, &relative]() -> void { dm->obj.setRelative(relative); };
+  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+}
+
+bool source_getRelative(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return false;
+  }
+
+  auto func = [&dm]() -> bool { return dm->obj.getRelative(); };
+  return wrapException_wrapFunction<decltype(func), bool>(func, "", exceptionPointer);
+}
+
+void source_setRadius(source_t* dm, float radius, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return;
+  }
+
+  auto func = [&dm, &radius]() -> void { dm->obj.setRadius(radius); };
+  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+}
+
+float source_getRadius(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return 0;
+  }
+
+  auto func = [&dm]() -> float { return dm->obj.getRadius(); };
+  return wrapException_wrapFunction<decltype(func), float>(func, "", exceptionPointer);
+}
+
+void source_setStereoAngles(source_t* dm, float leftAngle, float rightAngle, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return;
+  }
+
+  auto func = [&dm, &leftAngle, &rightAngle]() -> void { dm->obj.setStereoAngles(leftAngle, rightAngle); };
+  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);  
+}
+
+// std::pair<float,float> source_getStereoAngles(source_t* dm, void* exceptionPointer);
+
+//void source_set3DSpatialize(source_t* dm, Spatialize spatialize, void* exceptionPointer);
+
+//Spatialize source_get3DSpatialize(source_t* dm, void* exceptionPointer);
+
+void source_setResamplerIndex(source_t* dm, uint32_t index, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return;
+  }
+
+  auto func = [&dm, &index]() -> void { dm->obj.setResamplerIndex(index); };
+  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);  
+}
+
+uint32_t source_getResamplerIndex(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return 0;
+  }
+
+  auto func = [&dm]() -> uint32_t { return dm->obj.getResamplerIndex(); };
+  return wrapException_wrapFunction<decltype(func), uint32_t>(func, "", exceptionPointer);
+}
+
+void source_setAirAbsorptionFactor(source_t* dm, float factor, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return;
+  }
+
+  auto func = [&dm, &factor]() -> void { dm->obj.setAirAbsorptionFactor(factor); };
+  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+}
+
+float source_getAirAbsorptionFactor(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return 0;
+  }
+
+  auto func = [&dm]() -> float { return dm->obj.getAirAbsorptionFactor(); };
+  return wrapException_wrapFunction<decltype(func), float>(func, "", exceptionPointer);
+}
+
+void source_setGainAuto(source_t* dm, bool directhf, bool send, bool sendhf, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return;
+  }
+
+  auto func = [&dm, &directhf, &send, &sendhf]() -> void { dm->obj.setGainAuto(directhf, send, sendhf); };
+  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+}
+
+//std::tuple<bool,bool,bool> source_getGainAuto(source_t* dm, void* exceptionPointer);
+
+bool source_getDirectGainHFAuto(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return false;
+  }
+
+  auto func = [&dm]() -> bool { return dm->obj.getDirectGainHFAuto(); };
+  return wrapException_wrapFunction<decltype(func), bool>(func, "", exceptionPointer);
+}
+
+bool source_getSendGainAuto(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return false;
+  }
+
+  auto func = [&dm]() -> bool { return dm->obj.getSendGainAuto(); };
+  return wrapException_wrapFunction<decltype(func), bool>(func, "", exceptionPointer);
+}
+
+bool source_getSendGainHFAuto(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return false;
+  }
+
+  auto func = [&dm]() -> bool { return dm->obj.getSendGainHFAuto(); };
+  return wrapException_wrapFunction<decltype(func), bool>(func, "", exceptionPointer);
+}
+
+// void source_setDirectFilter(source_t* dm, const FilterParams &filter, void* exceptionPointer);
+// void source_setSendFilter(source_t* dm, ALuint send, const FilterParams &filter, void* exceptionPointer);
+// void source_setAuxiliarySend(source_t* dm, AuxiliaryEffectSlot slot, ALuint send, void* exceptionPointer);
+// void source_setAuxiliarySendFilter(source_t* dm, AuxiliaryEffectSlot slot, ALuint send, const FilterParams &filter, void* exceptionPointer);

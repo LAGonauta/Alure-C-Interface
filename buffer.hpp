@@ -18,7 +18,8 @@ uint32_t buffer_getSize(buffer_t* dm, void* exceptionPointer);
 void buffer_setLoopPoints(buffer_t* dm, alureLoopPoints points, void* exceptionPointer);
 alureLoopPoints buffer_getLoopPoints(buffer_t* dm, void* exceptionPointer);
 //Vector<Source> buffer_getSources(buffer_t* dm, void* exceptionPointer);
-const char* buffer_getName(buffer_t* dm, void* exceptionPointer);
+sourceVector_t* buffer_getSources(buffer_t* dm, void* exceptionPointer);
+wrapString_t* buffer_getName(buffer_t* dm, void* exceptionPointer);
 uint64_t buffer_getSourceCount(buffer_t* dm, void* exceptionPointer);
 
 #ifdef __cplusplus

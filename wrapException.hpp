@@ -27,29 +27,36 @@ wrapString_t* wrapException_comment(const wrapException_t* dm);
 }
 
 template<class funcType, class returnType>
-returnType wrapException_wrapFunction(const funcType someFunc, const std::string exceptionComment, void* exceptionPointerValue)
+returnType wrapException_wrapFunction(const funcType someFunc, const std::string exceptionComment, void* exceptionPointer)
 {
-  try
+  if (exceptionPointer == nullptr)
   {
     return someFunc();
   }
-  catch(const std::system_error& except)
+  else
   {
-    *static_cast<intptr_t*>(exceptionPointerValue) = reinterpret_cast<intptr_t>(wrapException_create(except, "std::system_error", exceptionComment));
+    try
+    {
+      return someFunc();
+    }
+    catch(const std::system_error& except)
+    {
+      *static_cast<intptr_t*>(exceptionPointer) = reinterpret_cast<intptr_t>(wrapException_create(except, "std::system_error", exceptionComment));
+    }
+    catch(const std::runtime_error& except)
+    {
+      *static_cast<intptr_t*>(exceptionPointer) = reinterpret_cast<intptr_t>(wrapException_create(except, "std::runtime_error", exceptionComment));
+    }
+    catch(const std::out_of_range& except)
+    {
+      *static_cast<intptr_t*>(exceptionPointer) = reinterpret_cast<intptr_t>(wrapException_create(except, "std::out_of_range", exceptionComment));
+    }
+    catch(const std::exception& except)
+    {
+      *static_cast<intptr_t*>(exceptionPointer) = reinterpret_cast<intptr_t>(wrapException_create(except, "std::exception", "Other error."));
+    }
+    return returnType();
   }
-  catch(const std::runtime_error& except)
-  {
-    *static_cast<intptr_t*>(exceptionPointerValue) = reinterpret_cast<intptr_t>(wrapException_create(except, "std::runtime_error", exceptionComment));
-  }
-  catch(const std::out_of_range& except)
-  {
-    *static_cast<intptr_t*>(exceptionPointerValue) = reinterpret_cast<intptr_t>(wrapException_create(except, "std::out_of_range", exceptionComment));
-  }
-  catch(const std::exception& except)
-  {
-    *static_cast<intptr_t*>(exceptionPointerValue) = reinterpret_cast<intptr_t>(wrapException_create(except, "std::exception", "Other error."));
-  }
-  return returnType();
 }
 #endif
 

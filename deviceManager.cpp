@@ -7,7 +7,7 @@ deviceManager_t* deviceManager_create()
 {
   deviceManager_t* dm;
 
-  dm = new deviceManager { .obj = alure::DeviceManager::getInstance() };
+  dm = new deviceManager_t(alure::DeviceManager::getInstance());
 
   return dm;
 }
@@ -51,7 +51,7 @@ wrapStringVector_t* deviceManager_enumerate(deviceManager_t* dm, alure::DeviceEn
 
   auto result = dm->obj.enumerate(type);
   std::vector<wrapString_t*> string_vector;
-  for (int i = 0; i < result.size(); ++i)
+  for (size_t i = 0; i < result.size(); ++i)
   {
     string_vector.push_back(wrapString_create(result[i]));
   }

@@ -4,7 +4,7 @@ listener_t* listener_set(alure::Listener lis)
 {
   listener_t* dm;
 
-  dm = new listener { .obj = lis };
+  dm = new listener_t(lis);
 
   return dm;
 }

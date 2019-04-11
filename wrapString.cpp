@@ -4,7 +4,7 @@ wrapString_t* wrapString_create(const std::string text)
 {
   wrapString_t *dm;
 
-  dm = new wrapString_t { .obj = text };
+  dm = new wrapString_t(text);
 
   return dm;
 }

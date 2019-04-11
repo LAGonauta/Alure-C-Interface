@@ -7,7 +7,7 @@ device_t* device_create()
 {
   device_t* dm;
 
-  dm = new device { .obj = alure::Device() };
+  dm = new device_t(alure::Device());
 
   return dm;
 }
@@ -16,7 +16,7 @@ device_t* device_set(alure::Device dev)
 {
   device_t* dm;
 
-  dm = new device { .obj = dev };
+  dm = new device_t(dev);
 
   return dm;
 }
@@ -102,7 +102,7 @@ wrapStringVector_t* device_enumerateHRTFNames(device_t* dm)
 
   auto result = dm->obj.enumerateHRTFNames();
   std::vector<wrapString_t*> string_vector;
-  for (int i = 0; i < result.size(); ++i)
+  for (size_t i = 0; i < result.size(); ++i)
   {
     string_vector.push_back(wrapString_create(result[i]));
   }

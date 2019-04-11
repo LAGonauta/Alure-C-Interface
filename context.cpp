@@ -46,7 +46,7 @@ context_t* context_set(alure::Context ctx)
 {
   context_t* dm;
 
-  dm = new context { .obj = ctx };
+  dm = new context(ctx);
 
   return dm;
 }
@@ -156,7 +156,7 @@ wrapStringVector_t* context_getAvailableResamplers(context_t* dm)
 
   auto result = dm->obj.getAvailableResamplers();
   std::vector<wrapString_t*> string_vector;
-  for (int i = 0; i < result.size(); ++i)
+  for (size_t i = 0; i < result.size(); ++i)
   {
     string_vector.push_back(wrapString_create(result[i]));
   }
