@@ -4,6 +4,8 @@ struct alureVersion
 {
     uint32_t Major;
     uint32_t Minor;
+    alureVersion() : Major(0), Minor(0) { }
+    alureVersion(uint32_t major, uint32_t minor) : Major(major), Minor(minor) { }
 };
 
 struct alureVector3
@@ -29,4 +31,20 @@ struct alureLoopPoints
     uint32_t End;
     alureLoopPoints() : Start(0), End(0) { }
     alureLoopPoints(uint32_t start, uint32_t end) : Start(start), End(end) { }
+};
+
+struct alureGainRange
+{
+    float Min;
+    float Max;
+    alureGainRange() : Min(0), Max(0) { }
+    alureGainRange(float min, float max) : Min(min), Max(max) { }
+};
+
+struct alureDistanceRange
+{
+    float Ref;
+    float Max;
+    alureDistanceRange() : Ref(0), Max(0) { }
+    alureDistanceRange(float ref, float max) : Ref(ref), Max(max) { }
 };

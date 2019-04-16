@@ -262,6 +262,18 @@ void source_setGainRange(source_t* dm, float mingain, float maxgain, void* excep
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
 }
 
+alureGainRange source_getGainRange(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return alureGainRange();
+  }
+
+  auto func = [&dm]() -> std::pair<float, float> { return dm->obj.getGainRange(); };
+  auto result = wrapException_wrapFunction<decltype(func), std::pair<float, float>>(func, "", exceptionPointer);
+  return alureGainRange(result.first, result.second);
+}
+
 float source_getMinGain(source_t* dm, void* exceptionPointer)
 {
   if (dm == nullptr)
@@ -293,6 +305,18 @@ void source_setDistanceRange(source_t* dm, float refdist, float maxdist, void* e
 
   auto func = [&dm, &refdist, &maxdist]() -> void { dm->obj.setDistanceRange(refdist, maxdist); };
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+}
+
+alureDistanceRange source_getDistanceRange(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return alureDistanceRange();
+  }
+
+  auto func = [&dm]() -> std::pair<float, float> { return dm->obj.getDistanceRange(); };
+  auto result = wrapException_wrapFunction<decltype(func), std::pair<float, float>>(func, "", exceptionPointer);
+  return alureDistanceRange(result.first, result.second);
 }
 
 float source_getReferenceDistance(source_t* dm, void* exceptionPointer)

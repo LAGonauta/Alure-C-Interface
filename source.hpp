@@ -40,11 +40,11 @@ float source_getPitch(source_t* dm, void* exceptionPointer);
 void source_setGain(source_t* dm, float gain, void* exceptionPointer);
 float source_getGain(source_t* dm, void* exceptionPointer);
 void source_setGainRange(source_t* dm, float mingain, float maxgain, void* exceptionPointer);
-// std::pair<float,float> source_getGainRange(source_t* dm, void* exceptionPointer);
+alureGainRange source_getGainRange(source_t* dm, void* exceptionPointer);
 float source_getMinGain(source_t* dm, void* exceptionPointer);
 float source_getMaxGain(source_t* dm, void* exceptionPointer);
 void source_setDistanceRange(source_t* dm, float refdist, float maxdist, void* exceptionPointer);
-//std::pair<float,float> source_getDistanceRange(source_t* dm, void* exceptionPointer);
+alureDistanceRange source_getDistanceRange(source_t* dm, void* exceptionPointer);
 float source_getReferenceDistance(source_t* dm, void* exceptionPointer);
 float source_getMaxDistance(source_t* dm, void* exceptionPointer);
 
