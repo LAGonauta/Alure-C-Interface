@@ -262,7 +262,7 @@ void source_setGainRange(source_t* dm, float mingain, float maxgain, void* excep
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
 }
 
-alureGainRange source_getGainRange(source_t* dm, void* exceptionPointer)
+alureGainRange_t source_getGainRange(source_t* dm, void* exceptionPointer)
 {
   if (dm == nullptr)
   {
@@ -307,7 +307,7 @@ void source_setDistanceRange(source_t* dm, float refdist, float maxdist, void* e
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
 }
 
-alureDistanceRange source_getDistanceRange(source_t* dm, void* exceptionPointer)
+alureDistanceRange_t source_getDistanceRange(source_t* dm, void* exceptionPointer)
 {
   if (dm == nullptr)
   {
@@ -341,7 +341,7 @@ float source_getMaxDistance(source_t* dm, void* exceptionPointer)
   return wrapException_wrapFunction<decltype(func), float>(func, "", exceptionPointer);
 }
 
-void source_set3DParameters(source_t* dm, const alureVector3* position, const alureVector3* velocity, const alureOrientation* orientation, void* exceptionPointer)
+void source_set3DParameters(source_t* dm, const alureVector3_t* position, const alureVector3_t* velocity, const alureOrientation_t* orientation, void* exceptionPointer)
 {
   if (dm == nullptr)
   {
@@ -353,7 +353,7 @@ void source_set3DParameters(source_t* dm, const alureVector3* position, const al
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
 }
 
-void source_setPosition(source_t* dm, const alureVector3* position, void* exceptionPointer)
+void source_setPosition(source_t* dm, const alureVector3_t* position, void* exceptionPointer)
 {
   if (dm == nullptr)
   {
@@ -364,7 +364,7 @@ void source_setPosition(source_t* dm, const alureVector3* position, void* except
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
 }
 
-alureVector3 source_getPosition(source_t* dm, void* exceptionPointer)
+alureVector3_t source_getPosition(source_t* dm, void* exceptionPointer)
 {
   if (dm == nullptr)
   {
@@ -376,7 +376,7 @@ alureVector3 source_getPosition(source_t* dm, void* exceptionPointer)
   return alureVector3(result[0], result[1], result[2]);
 }
 
-void source_setVelocity(source_t* dm, const alureVector3* velocity, void* exceptionPointer)
+void source_setVelocity(source_t* dm, const alureVector3_t* velocity, void* exceptionPointer)
 {
   if (dm == nullptr)
   {
@@ -387,7 +387,7 @@ void source_setVelocity(source_t* dm, const alureVector3* velocity, void* except
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
 }
 
-alureVector3 source_getVelocity(source_t* dm, void* exceptionPointer)
+alureVector3_t source_getVelocity(source_t* dm, void* exceptionPointer)
 {
   if (dm == nullptr)
   {
@@ -399,7 +399,7 @@ alureVector3 source_getVelocity(source_t* dm, void* exceptionPointer)
   return alureVector3(result[0], result[1], result[2]);
 }
 
-void source_setDirection(source_t* dm, const alureVector3* direction, void* exceptionPointer)
+void source_setDirection(source_t* dm, const alureVector3_t* direction, void* exceptionPointer)
 {
   if (dm == nullptr)
   {
@@ -410,7 +410,7 @@ void source_setDirection(source_t* dm, const alureVector3* direction, void* exce
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
 }
 
-alureVector3 source_getDirection(source_t* dm, void* exceptionPointer)
+alureVector3_t source_getDirection(source_t* dm, void* exceptionPointer)
 {
   if (dm == nullptr)
   {
@@ -422,7 +422,7 @@ alureVector3 source_getDirection(source_t* dm, void* exceptionPointer)
   return alureVector3(result[0], result[1], result[2]);
 }
 
-void source_setOrientation(source_t* dm, const alureOrientation* orientation, void* exceptionPointer)
+void source_setOrientation(source_t* dm, const alureOrientation_t* orientation, void* exceptionPointer)
 {
   if (dm == nullptr)
   {
@@ -434,7 +434,7 @@ void source_setOrientation(source_t* dm, const alureOrientation* orientation, vo
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
 }
 
-alureOrientation source_getOrientation(source_t* dm, void* exceptionPointer)
+alureOrientation_t source_getOrientation(source_t* dm, void* exceptionPointer)
 {
   if (dm == nullptr)
   {

@@ -78,7 +78,7 @@ uint32_t buffer_getSize(buffer_t* dm, void* exceptionPointer)
   return wrapException_wrapFunction<decltype(func), uint32_t>(func, "Was the buffer removed?", exceptionPointer);
 }
 
-void buffer_setLoopPoints(buffer_t* dm, alureLoopPoints points, void* exceptionPointer)
+void buffer_setLoopPoints(buffer_t* dm, alureLoopPoints_t points, void* exceptionPointer)
 {
   if (dm == nullptr)
   {
@@ -89,7 +89,7 @@ void buffer_setLoopPoints(buffer_t* dm, alureLoopPoints points, void* exceptionP
   wrapException_wrapFunction<decltype(func), void>(func, "Was the buffer removed?", exceptionPointer);
 }
 
-alureLoopPoints buffer_getLoopPoints(buffer_t* dm, void* exceptionPointer)
+alureLoopPoints_t buffer_getLoopPoints(buffer_t* dm, void* exceptionPointer)
 {
   if (dm == nullptr)
   {

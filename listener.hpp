@@ -12,11 +12,11 @@ void listener_destroy(listener_t* dm);
 
 void listener_setGain(listener_t* dm, ALfloat gain);
 
-void listener_set3DParameters(listener_t* dm, const alureVector3* position, const alureVector3* velocity, const alureOrientation* orientation);
-void listener_setPosition(listener_t* dm, const alureVector3* position);
-void listener_setVelocity(listener_t* dm, const alureVector3* velocity);
+void listener_set3DParameters(listener_t* dm, const alureVector3_t* position, const alureVector3_t* velocity, const alureOrientation_t* orientation);
+void listener_setPosition(listener_t* dm, const alureVector3_t* position);
+void listener_setVelocity(listener_t* dm, const alureVector3_t* velocity);
 
-void listener_setOrientation(listener_t* dm, const alureOrientation orientation);
+void listener_setOrientation(listener_t* dm, const alureOrientation_t* orientation);
 
 void listener_setMetersPerUnit(listener_t* dm, ALfloat m_u);
 

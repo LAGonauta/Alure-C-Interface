@@ -14,8 +14,8 @@ void device_destroy(device_t* dm);
 wrapString_t* device_getName(device_t* dm, alure::PlaybackName type);
 bool device_queryExtension(device_t* dm, const char* extension);
 
-alureVersion device_getALCVersion(device_t* dm);
-alureVersion device_getEFXVersion(device_t* dm);
+alureVersion_t device_getALCVersion(device_t* dm);
+alureVersion_t device_getEFXVersion(device_t* dm);
 
 uint32_t device_getFrequency(device_t* dm);
 uint32_t device_getMaxAuxiliarySends(device_t* dm);

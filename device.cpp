@@ -51,26 +51,26 @@ bool device_queryExtension(device_t* dm, const char* extension)
   return dm->obj.queryExtension(extension);
 }
 
-alureVersion device_getALCVersion(device_t* dm)
+alureVersion_t device_getALCVersion(device_t* dm)
 {
   if (dm == nullptr)
   {
-    return { 0, 0 };
+    return alureVersion();
   }
 
   auto version = dm->obj.getALCVersion();
-  return { version.getMajor(), version.getMinor() };
+  return alureVersion(version.getMajor(), version.getMinor());
 }
 
-alureVersion device_getEFXVersion(device_t* dm)
+alureVersion_t device_getEFXVersion(device_t* dm)
 {
   if (dm == nullptr)
   {
-    return { 0, 0 };
+    return alureVersion();
   }
 
   auto version = dm->obj.getEFXVersion();
-  return { version.getMajor(), version.getMinor() };
+  return alureVersion(version.getMajor(), version.getMinor());
 }
 
 uint32_t device_getFrequency(device_t* dm)

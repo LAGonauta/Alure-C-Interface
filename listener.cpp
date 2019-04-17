@@ -29,7 +29,7 @@ void listener_setGain(listener_t* dm, ALfloat gain)
   dm->obj.setGain(gain);
 }
 
-void listener_set3DParameters(listener_t* dm, const alureVector3* position, const alureVector3* velocity, const alureOrientation* orientation)
+void listener_set3DParameters(listener_t* dm, const alureVector3_t* position, const alureVector3_t* velocity, const alureOrientation_t* orientation)
 {
   if (dm == nullptr)
   {
@@ -40,7 +40,7 @@ void listener_set3DParameters(listener_t* dm, const alureVector3* position, cons
   dm->obj.set3DParameters(alure::Vector3(position->x, position->y, position->z), alure::Vector3(velocity->x, velocity->y, velocity->z), orientation_pair);
 }
 
-void listener_setPosition(listener_t* dm, const alureVector3* position)
+void listener_setPosition(listener_t* dm, const alureVector3_t* position)
 {
   if (dm == nullptr)
   {
@@ -50,7 +50,7 @@ void listener_setPosition(listener_t* dm, const alureVector3* position)
   dm->obj.setPosition(alure::Vector3(position->x, position->y, position->z));
 }
 
-void listener_setVelocity(listener_t* dm, const alureVector3* velocity)
+void listener_setVelocity(listener_t* dm, const alureVector3_t* velocity)
 {
   if (dm == nullptr)
   {
@@ -60,7 +60,7 @@ void listener_setVelocity(listener_t* dm, const alureVector3* velocity)
   dm->obj.setVelocity(alure::Vector3(velocity->x, velocity->y, velocity->z));
 }
 
-void listener_setOrientation(listener_t* dm, const alureOrientation* orientation)
+void listener_setOrientation(listener_t* dm, const alureOrientation_t* orientation)
 {
   if (dm == nullptr)
   {
