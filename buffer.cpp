@@ -111,20 +111,13 @@ sourceVector_t* buffer_getSources(buffer_t* dm, void* exceptionPointer)
 
   auto func = [&dm]() -> alure::Vector<alure::Source> { return dm->obj.getSources(); };
   auto sources = wrapException_wrapFunction<decltype(func), alure::Vector<alure::Source>>(func, "Was the buffer removed?", exceptionPointer);
-  if (exceptionPointer != nullptr && *static_cast<intptr_t*>(exceptionPointer) == 0)
+  std::vector<source_t*> final_result;
+  for (auto& source : sources)
   {
-    std::vector<source_t*> final_result;
-    for (auto& source : sources)
-    {
-      final_result.push_back(source_set(source));
-    }
+    final_result.push_back(source_set(source));
+  }
 
-    return sourceVector_create(final_result);
-  }
-  else
-  {
-    return nullptr;
-  }
+  return sourceVector_create(final_result);
 }
 
 wrapString_t* buffer_getName(buffer_t* dm, void* exceptionPointer)

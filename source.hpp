@@ -58,15 +58,15 @@ alureVector3_t source_getDirection(source_t* dm, void* exceptionPointer);
 void source_setOrientation(source_t* dm, const alureOrientation_t* orientation, void* exceptionPointer);
 alureOrientation_t source_getOrientation(source_t* dm, void* exceptionPointer);
 void source_setConeAngles(source_t* dm, float inner, float outer, void* exceptionPointer);
-// std::pair<float,float> source_getConeAngles(source_t* dm, void* exceptionPointer);
+alureConeAngles_t source_getConeAngles(source_t* dm, void* exceptionPointer);
 float source_getInnerConeAngle(source_t* dm, void* exceptionPointer);
 float source_getOuterConeAngle(source_t* dm, void* exceptionPointer);
 void source_setOuterConeGains(source_t* dm, float gain, float gainhf, void* exceptionPointer); //gainhf default = 1.0f
-// std::pair<float,float> source_getOuterConeGains(source_t* dm, void* exceptionPointer);
+alureOuterConeGains_t source_getOuterConeGains(source_t* dm, void* exceptionPointer);
 float source_getOuterConeGain(source_t* dm, void* exceptionPointer);
 float source_getOuterConeGainHF(source_t* dm, void* exceptionPointer);
 void source_setRolloffFactors(source_t* dm, float factor, float roomfactor, void* exceptionPointer); //roomfactor default = 0.0f
-// std::pair<float,float> source_getRolloffFactors(source_t* dm, void* exceptionPointer);
+alureRolloffFactors_t source_getRolloffFactors(source_t* dm, void* exceptionPointer);
 float source_getRolloffFactor(source_t* dm, void* exceptionPointer);
 float source_getRoomRolloffFactor(source_t* dm, void* exceptionPointer);
 void source_setDopplerFactor(source_t* dm, float factor, void* exceptionPointer);

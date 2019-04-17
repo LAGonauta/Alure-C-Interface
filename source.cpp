@@ -456,7 +456,18 @@ void source_setConeAngles(source_t* dm, float inner, float outer, void* exceptio
   auto func = [&dm, &inner, &outer]() -> void { dm->obj.setConeAngles(inner, outer); };
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
 }
-// std::pair<float,float> source_getConeAngles(source_t* dm, void* exceptionPointer);
+
+alureConeAngles_t source_getConeAngles(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return alureConeAngles();
+  }
+
+  auto func = [&dm]() -> std::pair<float, float> { return dm->obj.getConeAngles(); };
+  auto result = wrapException_wrapFunction<decltype(func), std::pair<float, float>>(func, "", exceptionPointer);
+  return alureConeAngles(result.first, result.second);
+}
 
 float source_getInnerConeAngle(source_t* dm, void* exceptionPointer)
 {
@@ -491,7 +502,17 @@ void source_setOuterConeGains(source_t* dm, float gain, float gainhf, void* exce
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
 }
 
-// std::pair<float,float> source_getOuterConeGains(source_t* dm, void* exceptionPointer);
+alureOuterConeGains_t source_getOuterConeGains(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return alureOuterConeGains();
+  }
+
+  auto func = [&dm]() -> std::pair<float, float> { return dm->obj.getOuterConeGains(); };
+  auto result = wrapException_wrapFunction<decltype(func), std::pair<float, float>>(func, "", exceptionPointer);
+  return alureOuterConeGains(result.first, result.second);
+}
 
 float source_getOuterConeGain(source_t* dm, void* exceptionPointer)
 {
@@ -526,7 +547,17 @@ void source_setRolloffFactors(source_t* dm, float factor, float roomfactor, void
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
 }
 
-// std::pair<float,float> source_getRolloffFactors(source_t* dm, void* exceptionPointer);
+alureRolloffFactors_t source_getRolloffFactors(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return alureRolloffFactors();
+  }
+
+  auto func = [&dm]() -> std::pair<float, float> { return dm->obj.getRolloffFactors(); };
+  auto result = wrapException_wrapFunction<decltype(func), std::pair<float, float>>(func, "", exceptionPointer);
+  return alureRolloffFactors(result.first, result.second);
+}
 
 float source_getRolloffFactor(source_t* dm, void* exceptionPointer)
 {
