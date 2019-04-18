@@ -58,6 +58,12 @@ extern "C"
     float Source;
     float Room;
   } alureRolloffFactors_t;
+
+  typedef struct
+  {
+    float Left;
+    float Right;
+  } alureStereoAngles_t;
 #ifdef __cplusplus
 }
 #endif
@@ -151,5 +157,15 @@ inline alureRolloffFactors_t alureRolloffFactors()
 inline alureRolloffFactors_t alureRolloffFactors(float source, float room)
 {
   return alureRolloffFactors_t{ source, room };
+}
+
+inline alureStereoAngles_t alureStereoAngles()
+{
+  return alureStereoAngles_t{ 0, 0 };
+}
+
+inline alureStereoAngles_t alureStereoAngles(float left, float right)
+{
+  return alureStereoAngles_t{ left, right };
 }
 #endif

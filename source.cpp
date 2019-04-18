@@ -658,11 +658,39 @@ void source_setStereoAngles(source_t* dm, float leftAngle, float rightAngle, voi
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);  
 }
 
-// std::pair<float,float> source_getStereoAngles(source_t* dm, void* exceptionPointer);
+alureStereoAngles_t source_getStereoAngles(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return alureStereoAngles();
+  }
 
-//void source_set3DSpatialize(source_t* dm, Spatialize spatialize, void* exceptionPointer);
+  auto func = [&dm]() -> std::pair<float, float> { return dm->obj.getStereoAngles(); };
+  auto result = wrapException_wrapFunction<decltype(func), std::pair<float, float>>(func, "", exceptionPointer);
+  return alureStereoAngles(result.first, result.second);
+}
 
-//Spatialize source_get3DSpatialize(source_t* dm, void* exceptionPointer);
+void source_set3DSpatialize(source_t* dm, alure::Spatialize spatialize, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return;
+  }
+
+  auto func = [&dm, &spatialize]() -> void { dm->obj.set3DSpatialize(spatialize); };
+  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+}
+
+alure::Spatialize source_get3DSpatialize(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return alure::Spatialize();
+  }
+
+  auto func = [&dm]() -> alure::Spatialize { return dm->obj.get3DSpatialize(); };
+  return wrapException_wrapFunction<decltype(func), alure::Spatialize>(func, "", exceptionPointer);
+}
 
 void source_setResamplerIndex(source_t* dm, uint32_t index, void* exceptionPointer)
 {
