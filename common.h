@@ -54,6 +54,13 @@ struct source
 };
 typedef struct source source_t;
 
+struct effect
+{
+  alure::Effect obj;
+  effect(alure::Effect eff) : obj(eff) { }
+};
+typedef struct effect effect_t;
+
 struct context
 {
   alure::Context obj;
