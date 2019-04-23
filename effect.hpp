@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 effect_t* effect_set(alure::Effect effect);
+alure::Effect effect_get(effect_t* dm);
 void effect_destroyPointer(effect_t* dm, void* exceptionPointer);
 void effect_destroy(effect_t* dm, void* exceptionPointer);
 

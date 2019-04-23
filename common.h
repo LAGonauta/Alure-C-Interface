@@ -61,6 +61,13 @@ struct effect
 };
 typedef struct effect effect_t;
 
+struct auxiliaryEffectSlot
+{
+  alure::AuxiliaryEffectSlot obj;
+  auxiliaryEffectSlot(alure::AuxiliaryEffectSlot effslot) : obj(effslot) { }
+};
+typedef struct auxiliaryEffectSlot auxiliaryEffectSlot_t;
+
 struct context
 {
   alure::Context obj;

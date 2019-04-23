@@ -10,6 +10,16 @@ effect_t* effect_set(alure::Effect eff)
   return dm;
 }
 
+alure::Effect effect_get(effect_t* dm)
+{
+  if (dm == nullptr)
+  {
+    return alure::Effect();
+  }
+
+  return dm->obj;
+}
+
 void effect_destroy(effect_t* dm, void* exceptionPointer)
 {
   if (dm == nullptr)
