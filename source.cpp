@@ -1,4 +1,5 @@
 #include "source.hpp"
+#include "auxiliaryEffectSlot.hpp"
 #include "wrapException.hpp"
 
 source_t* source_set(alure::Source sour)
@@ -784,5 +785,14 @@ bool source_getSendGainHFAuto(source_t* dm, void* exceptionPointer)
 
 // void source_setDirectFilter(source_t* dm, const FilterParams &filter, void* exceptionPointer);
 // void source_setSendFilter(source_t* dm, ALuint send, const FilterParams &filter, void* exceptionPointer);
-// void source_setAuxiliarySend(source_t* dm, AuxiliaryEffectSlot slot, ALuint send, void* exceptionPointer);
+void source_setAuxiliarySend(source_t* dm, auxiliaryEffectSlot_t* slot, uint32_t send, void* exceptionPointer)
+{
+  if (dm == nullptr || slot == nullptr)
+  {
+    return;
+  }
+
+  auto func = [&dm, &slot, &send]() -> void { dm->obj.setAuxiliarySend(auxiliaryEffectSlot_get(slot), send); };
+  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+}
 // void source_setAuxiliarySendFilter(source_t* dm, AuxiliaryEffectSlot slot, ALuint send, const FilterParams &filter, void* exceptionPointer);

@@ -1,8 +1,10 @@
 #include "context.hpp"
 #include "buffer.hpp"
 #include "device.hpp"
+#include "effect.hpp"
 #include "listener.hpp"
 #include "source.hpp"
+#include "auxiliaryEffectSlot.hpp"
 #include "wrapString.hpp"
 #include "wrapStringVector.hpp"
 #include "wrapException.hpp"
@@ -212,8 +214,29 @@ source_t* context_createSource(context_t* dm, void* exceptionPointer)
   auto func = [&dm]() -> source_t* { return source_set(dm->obj.createSource()); };
   return wrapException_wrapFunction<decltype(func), source_t*>(func, "", exceptionPointer);
 }
-// AuxiliaryEffectSlot createAuxiliaryEffectSlot();
-// Effect createEffect();
+
+auxiliaryEffectSlot_t* context_createAuxiliaryEffectSlot(context_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return nullptr;
+  }
+
+  auto func = [&dm]() -> auxiliaryEffectSlot_t* { return auxiliaryEffectSlot_set(dm->obj.createAuxiliaryEffectSlot()); };
+  return wrapException_wrapFunction<decltype(func), auxiliaryEffectSlot_t*>(func, "", exceptionPointer);
+}
+
+effect_t* context_createEffect(context_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return nullptr;
+  }
+
+  auto func = [&dm]() -> effect_t* { return effect_set(dm->obj.createEffect()); };
+  return wrapException_wrapFunction<decltype(func), effect_t*>(func, "", exceptionPointer);
+}
+
 // SourceGroup createSourceGroup();
 
 void context_setDopplerFactor(context_t* dm, float factor)

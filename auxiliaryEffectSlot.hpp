@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 auxiliaryEffectSlot_t* auxiliaryEffectSlot_set(alure::AuxiliaryEffectSlot effectSlot);
+alure::AuxiliaryEffectSlot auxiliaryEffectSlot_get(auxiliaryEffectSlot_t* dm);
 void auxiliaryEffectSlot_destroyPointer(auxiliaryEffectSlot_t* dm, void* exceptionPointer);
 void auxiliaryEffectSlot_destroy(auxiliaryEffectSlot_t* dm, void* exceptionPointer);
 

@@ -2,13 +2,23 @@
 #include "effect.hpp"
 #include "wrapException.hpp"
 
-auxiliaryEffectSlot_t* auxiliaryEffectSlot_set(alure::AuxiliaryEffectSlot eff)
+auxiliaryEffectSlot_t* auxiliaryEffectSlot_set(alure::AuxiliaryEffectSlot effectSlot)
 {
   auxiliaryEffectSlot_t* dm;
 
-  dm = new auxiliaryEffectSlot(eff);
+  dm = new auxiliaryEffectSlot(effectSlot);
 
   return dm;
+}
+
+alure::AuxiliaryEffectSlot auxiliaryEffectSlot_get(auxiliaryEffectSlot_t* dm)
+{
+  if (dm == nullptr)
+  {
+    return alure::AuxiliaryEffectSlot();
+  }
+
+  return dm->obj;
 }
 
 void auxiliaryEffectSlot_destroy(auxiliaryEffectSlot_t* dm, void* exceptionPointer)

@@ -50,8 +50,8 @@ void context_removeBuffer(context_t* dm, const char* name);
 //void removeBuffer(Buffer buffer);
 
 source_t* context_createSource(context_t* dm, void* exceptionPointer);
-// AuxiliaryEffectSlot createAuxiliaryEffectSlot();
-// Effect createEffect();
+auxiliaryEffectSlot_t* context_createAuxiliaryEffectSlot(context_t* dm, void* exceptionPointer);
+effect_t* context_createEffect(context_t* dm, void* exceptionPointer);
 // SourceGroup createSourceGroup();
 
 void context_setDopplerFactor(context_t* dm, float factor);
