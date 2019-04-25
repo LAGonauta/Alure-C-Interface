@@ -88,7 +88,7 @@ void source_setGainAuto(source_t* dm, bool directhf, bool send, bool sendhf, voi
 bool source_getDirectGainHFAuto(source_t* dm, void* exceptionPointer);
 bool source_getSendGainAuto(source_t* dm, void* exceptionPointer);
 bool source_getSendGainHFAuto(source_t* dm, void* exceptionPointer);
-// void source_setDirectFilter(source_t* dm, const FilterParams &filter, void* exceptionPointer);
+void source_setDirectFilter(source_t* dm, const alure::FilterParams& filter, void* exceptionPointer);
 // void source_setSendFilter(source_t* dm, ALuint send, const FilterParams &filter, void* exceptionPointer);
 void source_setAuxiliarySend(source_t* dm, auxiliaryEffectSlot_t* slot, uint32_t send, void* exceptionPointer);
 // void source_setAuxiliarySendFilter(source_t* dm, AuxiliaryEffectSlot slot, ALuint send, const FilterParams &filter, void* exceptionPointer);
