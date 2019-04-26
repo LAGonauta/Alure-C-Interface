@@ -84,7 +84,7 @@ uint32_t source_getResamplerIndex(source_t* dm, void* exceptionPointer);
 void source_setAirAbsorptionFactor(source_t* dm, float factor, void* exceptionPointer);
 float source_getAirAbsorptionFactor(source_t* dm, void* exceptionPointer);
 void source_setGainAuto(source_t* dm, bool directhf, bool send, bool sendhf, void* exceptionPointer);
-//std::tuple<bool,bool,bool> source_getGainAuto(source_t* dm, void* exceptionPointer);
+gainsAuto_t source_getGainAuto(source_t* dm, void* exceptionPointer);
 bool source_getDirectGainHFAuto(source_t* dm, void* exceptionPointer);
 bool source_getSendGainAuto(source_t* dm, void* exceptionPointer);
 bool source_getSendGainHFAuto(source_t* dm, void* exceptionPointer);
