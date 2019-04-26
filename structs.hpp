@@ -64,6 +64,13 @@ extern "C"
     float Left;
     float Right;
   } alureStereoAngles_t;
+
+  typedef struct
+  {
+    bool DirectGainHF;
+    bool SendGain;
+    bool SendGainHF;
+  } gainsAuto_t;
 #ifdef __cplusplus
 }
 #endif
@@ -167,5 +174,15 @@ inline alureStereoAngles_t alureStereoAngles()
 inline alureStereoAngles_t alureStereoAngles(float left, float right)
 {
   return alureStereoAngles_t{ left, right };
+}
+
+inline gainsAuto_t gainsAuto()
+{
+  return gainsAuto_t{ true, true, true };
+}
+
+inline gainsAuto_t gainsAuto(bool directhf, bool send, bool sendhf)
+{
+  return gainsAuto_t{ directhf, send, sendhf };
 }
 #endif

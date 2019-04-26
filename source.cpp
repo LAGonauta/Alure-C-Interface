@@ -748,7 +748,21 @@ void source_setGainAuto(source_t* dm, bool directhf, bool send, bool sendhf, voi
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
 }
 
-//std::tuple<bool,bool,bool> source_getGainAuto(source_t* dm, void* exceptionPointer);
+gainsAuto_t source_getGainAuto(source_t* dm, void* exceptionPointer)
+{
+  if (dm == nullptr)
+  {
+    return gainsAuto();
+  }
+
+  auto func = [&dm]() -> gainsAuto_t
+  {
+    auto result = dm->obj.getGainAuto();
+    return gainsAuto(std::get<0>(result), std::get<1>(result), std::get<2>(result));
+  };
+
+  return wrapException_wrapFunction<decltype(func), gainsAuto_t>(func, "", exceptionPointer);  
+}
 
 bool source_getDirectGainHFAuto(source_t* dm, void* exceptionPointer)
 {
@@ -783,18 +797,27 @@ bool source_getSendGainHFAuto(source_t* dm, void* exceptionPointer)
   return wrapException_wrapFunction<decltype(func), bool>(func, "", exceptionPointer);
 }
 
-void source_setDirectFilter(source_t* dm, const alure::FilterParams& filter, void* exceptionPointer)
+void source_setDirectFilter(source_t* dm, alure::FilterParams* filter, void* exceptionPointer)
 {
-  if (dm == nullptr)
+  if (dm == nullptr || filter == nullptr)
   {
     return;
   }
 
-  auto func = [&dm, &filter]() -> void { dm->obj.setDirectFilter(filter); };
+  auto func = [&dm, &filter]() -> void { dm->obj.setDirectFilter(*filter); };
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
 }
 
-// void source_setSendFilter(source_t* dm, ALuint send, const FilterParams &filter, void* exceptionPointer);
+void source_setSendFilter(source_t* dm, uint32_t send, alure::FilterParams* filter, void* exceptionPointer)
+{
+  if (dm == nullptr|| filter == nullptr)
+  {
+    return;
+  }
+
+  auto func = [&dm, &send, &filter]() -> void { dm->obj.setSendFilter(send, *filter); };
+  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+}
 
 void source_setAuxiliarySend(source_t* dm, auxiliaryEffectSlot_t* slot, uint32_t send, void* exceptionPointer)
 {
@@ -807,4 +830,13 @@ void source_setAuxiliarySend(source_t* dm, auxiliaryEffectSlot_t* slot, uint32_t
   wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
 }
 
-// void source_setAuxiliarySendFilter(source_t* dm, AuxiliaryEffectSlot slot, ALuint send, const FilterParams &filter, void* exceptionPointer);
+void source_setAuxiliarySendFilter(source_t* dm, auxiliaryEffectSlot_t* slot, uint32_t send, alure::FilterParams* filter, void* exceptionPointer)
+{
+  if (dm == nullptr || slot == nullptr || filter == nullptr)
+  {
+    return;
+  }
+
+  auto func = [&dm, &slot, &send, &filter]() -> void { dm->obj.setAuxiliarySendFilter(auxiliaryEffectSlot_get(slot), send, *filter); };
+  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+}
