@@ -13,21 +13,21 @@
 #define __WRAPEXCEPTION_H__
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-wrapException_t* wrapException_create(const std::exception& e, const std::string& type, const std::string& comment);
-void wrapException_destroy(wrapException_t* dm);
-
-wrapString_t* wrapException_what(const wrapException_t* dm);
-wrapString_t* wrapException_type(const wrapException_t* dm);
-wrapString_t* wrapException_comment(const wrapException_t* dm);
+DLL_PUBLIC wrapException_t* wrapException_create(const std::exception& e, const std::string& type, const std::string& comment);
+DLL_PUBLIC void wrapException_destroy(wrapException_t* dm);
+DLL_PUBLIC wrapString_t* wrapException_what(const wrapException_t* dm);
+DLL_PUBLIC wrapString_t* wrapException_type(const wrapException_t* dm);
+DLL_PUBLIC wrapString_t* wrapException_comment(const wrapException_t* dm);
 
 #ifdef __cplusplus
 }
 
 template<class funcType, class returnType>
-returnType wrapException_wrapFunction(const funcType someFunc, const std::string exceptionComment, void* exceptionPointer)
+DLL_LOCAL returnType wrapException_wrapFunction(const funcType someFunc, const std::string exceptionComment, void* exceptionPointer)
 {
   if (exceptionPointer == nullptr)
   {

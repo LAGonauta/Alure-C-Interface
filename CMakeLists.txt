@@ -24,6 +24,8 @@ add_subdirectory(alure)
 add_dependencies(alure-c-interface alure2)
 target_link_libraries(alure-c-interface alure2)
 
+add_compile_definitions(BUILDING_DLL)
+
 if(MSVC)
   target_compile_options(alure-c-interface PRIVATE /W4 /WX)
 else()

@@ -4,23 +4,22 @@
 #define __WRAP_BUFFER_H__
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-buffer_t* buffer_set(alure::Buffer buffer);
-void buffer_destroy(buffer_t* dm);
-
-uint32_t buffer_getLength(buffer_t* dm, void* exceptionPointer);
-uint32_t buffer_getFrequency(buffer_t* dm, void* exceptionPointer);
-alure::ChannelConfig buffer_getChannelConfig(buffer_t* dm, void* exceptionPointer);
-alure::SampleType buffer_getSampleType(buffer_t* dm, void* exceptionPointer);
-uint32_t buffer_getSize(buffer_t* dm, void* exceptionPointer);
-void buffer_setLoopPoints(buffer_t* dm, alureLoopPoints_t points, void* exceptionPointer);
-alureLoopPoints_t buffer_getLoopPoints(buffer_t* dm, void* exceptionPointer);
-//Vector<Source> buffer_getSources(buffer_t* dm, void* exceptionPointer);
-sourceVector_t* buffer_getSources(buffer_t* dm, void* exceptionPointer);
-wrapString_t* buffer_getName(buffer_t* dm, void* exceptionPointer);
-uint64_t buffer_getSourceCount(buffer_t* dm, void* exceptionPointer);
+DLL_PUBLIC buffer_t* buffer_set(alure::Buffer buffer);
+DLL_PUBLIC void buffer_destroy(buffer_t* dm);
+DLL_PUBLIC uint32_t buffer_getLength(buffer_t* dm, void* exceptionPointer);
+DLL_PUBLIC uint32_t buffer_getFrequency(buffer_t* dm, void* exceptionPointer);
+DLL_PUBLIC alure::ChannelConfig buffer_getChannelConfig(buffer_t* dm, void* exceptionPointer);
+DLL_PUBLIC alure::SampleType buffer_getSampleType(buffer_t* dm, void* exceptionPointer);
+DLL_PUBLIC uint32_t buffer_getSize(buffer_t* dm, void* exceptionPointer);
+DLL_PUBLIC void buffer_setLoopPoints(buffer_t* dm, alureLoopPoints_t points, void* exceptionPointer);
+DLL_PUBLIC alureLoopPoints_t buffer_getLoopPoints(buffer_t* dm, void* exceptionPointer);
+DLL_PUBLIC sourceVector_t* buffer_getSources(buffer_t* dm, void* exceptionPointer);
+DLL_PUBLIC wrapString_t* buffer_getName(buffer_t* dm, void* exceptionPointer);
+DLL_PUBLIC uint64_t buffer_getSourceCount(buffer_t* dm, void* exceptionPointer);
 
 #ifdef __cplusplus
 }

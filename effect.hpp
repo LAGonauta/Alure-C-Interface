@@ -4,16 +4,17 @@
 #define __WRAP_EFFECT_H__
 
 #ifdef __cplusplus
-extern "C" {
+DLL_LOCAL alure::Effect effect_get(effect_t* dm);
+
+extern "C"
+{
 #endif
 
-effect_t* effect_set(alure::Effect effect);
-alure::Effect effect_get(effect_t* dm);
-void effect_destroyPointer(effect_t* dm, void* exceptionPointer);
-void effect_destroy(effect_t* dm, void* exceptionPointer);
-
-void effect_setReverbProperties(effect_t* dm, const EFXEAXREVERBPROPERTIES& props, void* exceptionPointer);
-void effect_setChorusProperties(effect_t* dm, const EFXCHORUSPROPERTIES& props, void* exceptionPointer);
+DLL_PUBLIC effect_t* effect_set(alure::Effect effect);
+DLL_PUBLIC void effect_destroyPointer(effect_t* dm, void* exceptionPointer);
+DLL_PUBLIC void effect_destroy(effect_t* dm, void* exceptionPointer);
+DLL_PUBLIC void effect_setReverbProperties(effect_t* dm, const EFXEAXREVERBPROPERTIES& props, void* exceptionPointer);
+DLL_PUBLIC void effect_setChorusProperties(effect_t* dm, const EFXCHORUSPROPERTIES& props, void* exceptionPointer);
 
 #ifdef __cplusplus
 }
