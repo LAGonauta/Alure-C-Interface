@@ -26,8 +26,8 @@ DLL_PUBLIC wrapString_t* wrapException_comment(const wrapException_t* dm);
 #ifdef __cplusplus
 }
 
-template<class funcType, class returnType>
-DLL_LOCAL returnType wrapException_wrapFunction(const funcType someFunc, const std::string exceptionComment, void* exceptionPointer)
+template<class funcType>
+DLL_LOCAL auto wrapException_wrapFunction(const funcType& someFunc, const std::string exceptionComment, void* exceptionPointer)
 {
   if (exceptionPointer == nullptr)
   {
@@ -55,7 +55,7 @@ DLL_LOCAL returnType wrapException_wrapFunction(const funcType someFunc, const s
     {
       *static_cast<intptr_t*>(exceptionPointer) = reinterpret_cast<intptr_t>(wrapException_create(except, "std::exception", "Other error."));
     }
-    return returnType();
+    return decltype(someFunc())();
   }
 }
 #endif

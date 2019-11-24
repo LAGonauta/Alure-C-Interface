@@ -14,19 +14,19 @@ void context_makeCurrent(context_t* dm, void* exceptionPointer)
   if (dm == nullptr)
   {
     auto func = []() -> void { alure::Context::MakeCurrent(nullptr); };
-    wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+    wrapException_wrapFunction(func, "", exceptionPointer);
   }
   else
   {
     auto func = [&dm]() -> void { alure::Context::MakeCurrent(dm->obj); };
-    wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+    wrapException_wrapFunction(func, "", exceptionPointer);
   }
 }
 
 context_t* context_getCurrent(void* exceptionPointer)
 {
     auto func = []() -> context_t* { return context_set(alure::Context::GetCurrent()); };
-    return wrapException_wrapFunction<decltype(func), context_t*>(func, "", exceptionPointer);
+    return wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 void context_makeThreadCurrent(context_t* dm, void* exceptionPointer)
@@ -34,19 +34,19 @@ void context_makeThreadCurrent(context_t* dm, void* exceptionPointer)
   if (dm == nullptr)
   {
     auto func = []() -> void { alure::Context::MakeThreadCurrent(nullptr); };
-    wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+    wrapException_wrapFunction(func, "", exceptionPointer);
   }
   else
   {
     auto func = [&dm]() -> void { alure::Context::MakeThreadCurrent(dm->obj); };
-    wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+    wrapException_wrapFunction(func, "", exceptionPointer);
   }
 }
 
 context_t* context_getThreadCurrent(void* exceptionPointer)
 {
     auto func = []() -> context_t* { return context_set(alure::Context::GetThreadCurrent()); };
-    return wrapException_wrapFunction<decltype(func), context_t*>(func, "", exceptionPointer);
+    return wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 context_t* context_set(alure::Context ctx)
@@ -86,7 +86,7 @@ device_t* context_getDevice(context_t* dm, void* exceptionPointer)
   }
 
   auto func = [&dm]() -> device_t* { return device_set(dm->obj.getDevice()); };
-  return wrapException_wrapFunction<decltype(func), device_t*>(func, "", exceptionPointer);
+  return wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 void context_startBatch(context_t* dm, void* exceptionPointer)
@@ -97,7 +97,7 @@ void context_startBatch(context_t* dm, void* exceptionPointer)
   }
 
   auto func = [&dm]() -> void { dm->obj.startBatch(); };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 void context_endBatch(context_t* dm, void* exceptionPointer)
@@ -108,7 +108,7 @@ void context_endBatch(context_t* dm, void* exceptionPointer)
   }
 
   auto func = [&dm]() -> void { dm->obj.endBatch(); };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 listener_t* context_getListener(context_t* dm, void* exceptionPointer)
@@ -119,7 +119,7 @@ listener_t* context_getListener(context_t* dm, void* exceptionPointer)
   }
 
   auto func = [&dm]() -> listener_t* { return listener_set(dm->obj.getListener()); };
-  return wrapException_wrapFunction<decltype(func), listener_t*>(func, "", exceptionPointer);
+  return wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 // SharedPtr<MessageHandler> setMessageHandler(SharedPtr<MessageHandler> handler);
@@ -134,7 +134,7 @@ void context_setAsyncWakeInterval(context_t* dm, int64_t interval, void* excepti
   }
 
   auto func = [&dm, &interval]() -> void { dm->obj.setAsyncWakeInterval(std::chrono::milliseconds(interval)); };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 int64_t context_getAsyncWakeInterval(context_t* dm, void* exceptionPointer)
@@ -145,7 +145,7 @@ int64_t context_getAsyncWakeInterval(context_t* dm, void* exceptionPointer)
   }
 
   auto func = [&dm]() -> int64_t { return dm->obj.getAsyncWakeInterval().count(); };
-  return wrapException_wrapFunction<decltype(func), int64_t>(func, "", exceptionPointer);
+  return wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 //SharedPtr<Decoder> context_createDecoder(context_t* dm, StringView name);
@@ -158,7 +158,7 @@ bool context_isSupported(context_t* dm, alure::ChannelConfig channels, alure::Sa
   }
 
   auto func = [&dm, &channels, &type]() -> bool { return dm->obj.isSupported(channels, type); };
-  return wrapException_wrapFunction<decltype(func), bool>(func, "", exceptionPointer);
+  return wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 wrapStringVector_t* context_getAvailableResamplers(context_t* dm, void* exceptionPointer)
@@ -169,7 +169,7 @@ wrapStringVector_t* context_getAvailableResamplers(context_t* dm, void* exceptio
   }
 
   auto func = [&dm]() -> alure::ArrayView<alure::String> { return dm->obj.getAvailableResamplers(); };
-  auto result = wrapException_wrapFunction<decltype(func), alure::ArrayView<alure::String>>(func, "", exceptionPointer);
+  auto result = wrapException_wrapFunction(func, "", exceptionPointer);
 
   std::vector<wrapString_t*> string_vector;
   for (size_t i = 0; i < result.size(); ++i)
@@ -188,7 +188,7 @@ int32_t context_getDefaultResamplerIndex(context_t* dm, void* exceptionPointer)
   }
 
   auto func = [&dm]() -> int32_t { return dm->obj.getDefaultResamplerIndex(); };
-  return wrapException_wrapFunction<decltype(func), int32_t>(func, "", exceptionPointer);
+  return wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 buffer_t* context_getBuffer(context_t* dm, const char* name, void* exceptionPointer)
@@ -199,7 +199,7 @@ buffer_t* context_getBuffer(context_t* dm, const char* name, void* exceptionPoin
   }
 
   auto func = [&dm, &name]() -> buffer_t* { return buffer_set(dm->obj.getBuffer(name)); };
-  return wrapException_wrapFunction<decltype(func), buffer_t*>(func, "", exceptionPointer);
+  return wrapException_wrapFunction(func, "", exceptionPointer);
 }
 //SharedFuture<Buffer> getBufferAsync(StringView name);
 //void precacheBuffersAsync(ArrayView<StringView> names);
@@ -216,7 +216,7 @@ void context_removeBuffer(context_t* dm, const char* name, void* exceptionPointe
   }
 
   auto func = [&dm, &name]() -> void { dm->obj.removeBuffer(name); };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 //void removeBuffer(Buffer buffer);
@@ -229,7 +229,7 @@ source_t* context_createSource(context_t* dm, void* exceptionPointer)
   }
 
   auto func = [&dm]() -> source_t* { return source_set(dm->obj.createSource()); };
-  return wrapException_wrapFunction<decltype(func), source_t*>(func, "", exceptionPointer);
+  return wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 auxiliaryEffectSlot_t* context_createAuxiliaryEffectSlot(context_t* dm, void* exceptionPointer)
@@ -240,7 +240,7 @@ auxiliaryEffectSlot_t* context_createAuxiliaryEffectSlot(context_t* dm, void* ex
   }
 
   auto func = [&dm]() -> auxiliaryEffectSlot_t* { return auxiliaryEffectSlot_set(dm->obj.createAuxiliaryEffectSlot()); };
-  return wrapException_wrapFunction<decltype(func), auxiliaryEffectSlot_t*>(func, "", exceptionPointer);
+  return wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 effect_t* context_createEffect(context_t* dm, void* exceptionPointer)
@@ -251,7 +251,7 @@ effect_t* context_createEffect(context_t* dm, void* exceptionPointer)
   }
 
   auto func = [&dm]() -> effect_t* { return effect_set(dm->obj.createEffect()); };
-  return wrapException_wrapFunction<decltype(func), effect_t*>(func, "", exceptionPointer);
+  return wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 // SourceGroup createSourceGroup();
@@ -264,7 +264,7 @@ void context_setDopplerFactor(context_t* dm, float factor, void* exceptionPointe
   }
 
   auto func = [&dm, &factor]() -> void { dm->obj.setDopplerFactor(factor); };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 void context_setSpeedOfSound(context_t* dm, float speed, void* exceptionPointer)
@@ -275,7 +275,7 @@ void context_setSpeedOfSound(context_t* dm, float speed, void* exceptionPointer)
   }
 
   auto func = [&dm, &speed]() -> void { dm->obj.setSpeedOfSound(speed); };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 void context_setDistanceModel(context_t* dm, alure::DistanceModel model, void* exceptionPointer)
@@ -286,7 +286,7 @@ void context_setDistanceModel(context_t* dm, alure::DistanceModel model, void* e
   }
 
   auto func = [&dm, &model]() -> void { dm->obj.setDistanceModel(model); };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 void context_update(context_t* dm, void* exceptionPointer)
@@ -297,5 +297,5 @@ void context_update(context_t* dm, void* exceptionPointer)
   }
 
   auto func = [&dm]() -> void { dm->obj.update(); };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }

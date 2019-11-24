@@ -28,7 +28,7 @@ void effect_destroy(effect_t* dm, void* exceptionPointer)
   }
 
   auto func = [&dm]() -> void { dm->obj.destroy(); };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 void effect_destroyPointer(effect_t* dm, void* exceptionPointer)
@@ -39,7 +39,7 @@ void effect_destroyPointer(effect_t* dm, void* exceptionPointer)
   }
 
   auto func = [&dm]() -> void { delete dm; };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 void effect_setReverbProperties(effect_t* dm, const EFXEAXREVERBPROPERTIES& props, void* exceptionPointer)
@@ -50,7 +50,7 @@ void effect_setReverbProperties(effect_t* dm, const EFXEAXREVERBPROPERTIES& prop
   }
 
   auto func = [&dm, &props]() -> void { dm->obj.setReverbProperties(props); };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 void effect_setChorusProperties(effect_t* dm, const EFXCHORUSPROPERTIES& props, void* exceptionPointer)
@@ -61,5 +61,5 @@ void effect_setChorusProperties(effect_t* dm, const EFXCHORUSPROPERTIES& props, 
   }
 
   auto func = [&dm, &props]() -> void { dm->obj.setChorusProperties(props); };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }

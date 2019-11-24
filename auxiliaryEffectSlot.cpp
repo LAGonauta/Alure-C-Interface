@@ -29,7 +29,7 @@ void auxiliaryEffectSlot_destroy(auxiliaryEffectSlot_t* dm, void* exceptionPoint
   }
 
   auto func = [&dm]() -> void { dm->obj.destroy(); };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 void auxiliaryEffectSlot_destroyPointer(auxiliaryEffectSlot_t* dm, void* exceptionPointer)
@@ -40,7 +40,7 @@ void auxiliaryEffectSlot_destroyPointer(auxiliaryEffectSlot_t* dm, void* excepti
   }
 
   auto func = [&dm]() -> void { delete dm; };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 void auxiliaryEffectSlot_setGain(auxiliaryEffectSlot_t* dm, float gain, void* exceptionPointer)
@@ -51,7 +51,7 @@ void auxiliaryEffectSlot_setGain(auxiliaryEffectSlot_t* dm, float gain, void* ex
   }
 
   auto func = [&dm, &gain]() -> void { dm->obj.setGain(gain); };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 void auxiliaryEffectSlot_setSendAuto(auxiliaryEffectSlot_t* dm, bool sendAuto, void* exceptionPointer)
@@ -62,7 +62,7 @@ void auxiliaryEffectSlot_setSendAuto(auxiliaryEffectSlot_t* dm, bool sendAuto, v
   }
 
   auto func = [&dm, &sendAuto]() -> void { dm->obj.setSendAuto(sendAuto); };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 void auxiliaryEffectSlot_applyEffect(auxiliaryEffectSlot_t* dm, effect_t* effect, void* exceptionPointer)
@@ -73,7 +73,7 @@ void auxiliaryEffectSlot_applyEffect(auxiliaryEffectSlot_t* dm, effect_t* effect
   }
 
   auto func = [&dm, &effect]() -> void { dm->obj.applyEffect(effect_get(effect)); };
-  wrapException_wrapFunction<decltype(func), void>(func, "", exceptionPointer);
+  wrapException_wrapFunction(func, "", exceptionPointer);
 }
 
 //Vector<SourceSend> auxiliaryEffectSlot_getSourceSends(auxiliaryEffectSlot_t* dm, void* exceptionPointer);
@@ -86,5 +86,5 @@ uint64_t auxiliaryEffectSlot_getUseCount(auxiliaryEffectSlot_t* dm, void* except
   }
 
   auto func = [&dm]() -> uint64_t { return dm->obj.getUseCount(); };
-  return wrapException_wrapFunction<decltype(func), uint64_t>(func, "", exceptionPointer);
+  return wrapException_wrapFunction(func, "", exceptionPointer);
 }
